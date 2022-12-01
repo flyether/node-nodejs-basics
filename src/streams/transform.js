@@ -7,14 +7,12 @@ const transform = async () => {
 
     const transform = new Transform({
         transform(chunk, encoding, callback) {
-            this.push(chunk.toString().split(' ').reverse().join(' '));
+            this.push(chunk.toString().split('').reverse().join(''));
             callback();
         }
     });
 
     process.stdin.pipe(transform).pipe(process.stdout);
-      
-     
 };
 
 await transform();
