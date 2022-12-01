@@ -6,7 +6,7 @@ const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
 
 const create = async () => {
-  const dir = _dirname+"/files/fresh.txt";
+  const dir = _dirname +"/files/fresh.txt";
   let file = await fs.stat(dir).catch((e)=>{});
 
   if (file) {
