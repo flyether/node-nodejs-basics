@@ -3,10 +3,10 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
 const _filename = fileURLToPath(import.meta.url); 
-const _dirname = dirname(_filename);
+const golFilename = dirname(_filename);
 
 const remove = async () => {
-    const dir = _dirname+"/files/fileToRemove.txt";
+    const dir = golFilename+"/files/fileToRemove.txt";
     let File = await fs.stat(dir).catch((e)=>{});
 
 	if (!File) {

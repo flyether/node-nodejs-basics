@@ -1,7 +1,6 @@
 
 import {fileURLToPath} from "url";
 import { createRequire } from 'module';
-
 import path from 'node:path';
 import { release, version } from 'os';
 import {createServer as createServerHttp} from "node:http"
@@ -9,7 +8,6 @@ import "./files/c.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename);
-
 const require = createRequire(import.meta.url);
 
 const random = Math.random();

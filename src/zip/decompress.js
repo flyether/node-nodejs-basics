@@ -4,13 +4,13 @@ import { createUnzip } from'zlib';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 const _filename = fileURLToPath(import.meta.url); 
-const _dirname = dirname(_filename) + "/files/fileToCompress.txt";
-const _dirnameGz = dirname(_filename) + "/files/archive.gz";
+const golFilename = dirname(_filename) + "/files/fileToCompress.txt";
+const golFilenameGz = dirname(_filename) + "/files/archive.gz";
 
 const decompress = async () => {
 
-    const input = await fs.createReadStream(_dirnameGz);
-    const outPut = await fs.createWriteStream(_dirname);
+    const input = await fs.createReadStream(golFilenameGz);
+    const outPut = await fs.createWriteStream(golFilename);
     input.pipe(createUnzip()).pipe(outPut);
 };
 

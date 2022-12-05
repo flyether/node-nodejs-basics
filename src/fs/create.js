@@ -3,17 +3,26 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
 const _filename = fileURLToPath(import.meta.url); 
-const _dirname = dirname(_filename);
+const golFilename = dirname(_filename) + '/files/fresh.txt';
 
 const create = async () => {
-  const dir = _dirname +"/files/fresh.txt";
-  let file = await fs.stat(dir).catch((e)=>{});
+ // first metod
+//   let file = await fs.stat(golFilename).catch((e)=>{});
 
-  if (file) {
-    throw new Error('FS operation failed');
-} else {
-  await fs.writeFile(_dirname + '/files/fresh.txt', "I am fresh and young.")
+//   if (file) {
+//     throw new Error('FS operation failed');
+
+// } else {
+//   await fs.writeFile(golFilename, 'I am fresh and young.');
+// }
+
+// second metod with flag
+try{
+  await fs.writeFile(golFilename, 'I am fresh and young.', {flag: 'wx'});
+} catch (error) {
+  throw new Error('FS operation failed');
 }
+
 };
 
 await create();  

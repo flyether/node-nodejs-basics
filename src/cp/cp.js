@@ -1,34 +1,28 @@
-import cp, { spawn } from 'node:child_process';
+import  { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
-import { Stream } from 'node:stream';
 
 const _filename = fileURLToPath(import.meta.url); 
-const _dirname = dirname(_filename) + "/files/script.js";
+const golFilename = dirname(_filename) + "/files/script.js";
 
+// при таких параметрах аргументы можно в командной строке ввести
 
-const parseArgs = process.argv;
-// const parseArgs = process.argv.slice(2);
+// const paramArgs = process.argv.slice(2);
+const paramArgs = '--cat --dog --pig';
+
 
 const spawnChildProcess = async (args) => {
-  const childProcess = spawn('node', [_dirname, ...args]);
-
-  const stream = new Stream();
-  childProcess.stdout.on('data', data => {
-    console.log(`stdout:\n${data}`);
-  });
+  const childProcess = spawn('node', [golFilename, ...args.split(' ')], {stdio: "inherit"});
+//without {stdio: "inherit"}
+  // childProcess.stdout.on('data', data => {
+  //   console.log(`${data}`);
+  // });
+  // process.stdin.pipe(childProcess.stdin)
   
-
-
-  childProcess.stderr.on('data', data => {
-    console.error(`stderr: ${data}`);
-  });
-
-  childProcess.on('close', function (code) {
-    console.log('child process exited with code ' + code);  });
-
-
+  // childProcess.stderr.on('data', data => {
+  //   console.error(`stderr: ${data}`);
+  // });
 
 };
 
-spawnChildProcess(parseArgs);
+spawnChildProcess(paramArgs);
