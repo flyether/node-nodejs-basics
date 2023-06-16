@@ -9,7 +9,8 @@ const read = async () => {
     if (!file) {
         throw new Error('FS operation failed');
     }
-        console.log(await fs.readFile(golFilename, 'utf8'));
+        console.log(await fs.readFile(golFilename, 'utf8',  {flag: 'wx'}));
 };
 
 await read();
+

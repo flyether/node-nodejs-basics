@@ -24,4 +24,3 @@ const copy = async () => {
 };
 
 copy();
-
